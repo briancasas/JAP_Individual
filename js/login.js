@@ -3,14 +3,38 @@ function validacion() {
     let pass = document.getElementById("contraseña").value;
     let email = document.getElementById("email").value;
 
-    if (pass == "" || email == "")
-        alert("todos los campos son obligatorios");
-
+    if ((pass == "" || email == "") || (pass == "" && email == ""))
+        return alertaAdv();
 
     else {
-        alert("Datos ingresados correctamente")
-        redirPortada();
+       alertSucc();
+       setInterval(10000);
+       redirPortada();
+
     }
+
+}
+function alertSucc() {
+    let alertaSucces = "";
+    alertaSucces +=
+        `<div class="alert alert-success" role="alert">
+    <p> Datos ingresados correctamente! </p>
+    </div>
+
+    `
+    document.getElementById("alertaWarning").innerHTML = alertaSucces;
+
+}
+
+function alertaAdv() {
+    let alertaWarn = "";
+    alertaWarn +=
+        `<div class="alert alert-warning" role="alert">
+    <p> Todos los campos son obligatorios</p>
+    </div>
+
+    `
+    document.getElementById("alertaWarning").innerHTML = alertaWarn;
 
 }
 
