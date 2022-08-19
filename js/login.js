@@ -7,8 +7,6 @@ function validacion() {
         return alertaAdv();
 
     else {
-       alertSucc();
-       setInterval(10000);
        redirPortada();
 
     }
