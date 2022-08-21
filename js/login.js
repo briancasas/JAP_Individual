@@ -1,4 +1,4 @@
-
+//Función que valida los input de inicio de sesión.
 function validacion() {
     let pass = document.getElementById("contraseña").value;
     let email = document.getElementById("email").value;
@@ -12,18 +12,7 @@ function validacion() {
     }
 
 }
-function alertSucc() {
-    let alertaSucces = "";
-    alertaSucces +=
-        `<div class="alert alert-success" role="alert">
-    <p> Datos ingresados correctamente! </p>
-    </div>
-
-    `
-    document.getElementById("alertaWarning").innerHTML = alertaSucces;
-
-}
-
+//Función de feedback para el usuario que deja campo vacíos.
 function alertaAdv() {
     let alertaWarn = "";
     alertaWarn +=
@@ -35,10 +24,11 @@ function alertaAdv() {
     document.getElementById("alertaWarning").innerHTML = alertaWarn;
 
 }
-
+// Evento que ejecuta la validación.
 const boton = document.getElementById("btnIng");
 boton.addEventListener("click", validacion);
 
+//Función para redireccionar a la portada (página principal) del E-Commerce
 function redirPortada() {
     window.location.href = "portada.html";
 }

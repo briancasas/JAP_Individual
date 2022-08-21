@@ -2,7 +2,7 @@
 //array donde se cargarán los datos recibidos:
 let productsArray = [];
 
-
+//Función para recorrer el Array de un objeto y agregar elementos al HTML.
 function showProductsList() {
     let htmlContentToAppend = "";
 
@@ -26,7 +26,7 @@ function showProductsList() {
             </div>
         </div>
         `
-        document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
+        document.getElementById("product-list-container").innerHTML = htmlContentToAppend; //Por medio de DOM agregamos al html
     }
 }
 
