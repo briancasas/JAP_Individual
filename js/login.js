@@ -7,7 +7,8 @@ function validacion() {
         return alertaAdv();
 
     else {
-       redirPortada();
+        localStorage.setItem("User", email)
+        redirPortada();
 
     }
 

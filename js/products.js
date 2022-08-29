@@ -8,6 +8,7 @@ function showProductsList() {
 
     for (let products of productsArray.products) {
         htmlContentToAppend += `
+    <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
@@ -25,6 +26,7 @@ function showProductsList() {
                 </div>
             </div>
         </div>
+    </div>
         `
         document.getElementById("product-list-container").innerHTML = htmlContentToAppend; //Por medio de DOM agregamos al html
     }
