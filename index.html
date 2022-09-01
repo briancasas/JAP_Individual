@@ -4,7 +4,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="google-signin-client_id" content="77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com">
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-site-verification" content="tn4IyQs1_oASFLLmKXshRaWRkVXXEjhckMBvZcCseGI" />
   <title>eMercado - Todo lo que busques está aquí</title>
@@ -30,7 +31,7 @@
     <div class="input_style">
       <h2>Inicio de sesión</h2>
       </br>
-      <label for="email">Email</label> 
+      <label for="email">Email</label>
 
       <input class="form-control mb-3" type="email" placeholder="Email" id="email" required>
 
@@ -39,26 +40,15 @@
       <input class="form-control mb-3" type="password" placeholder="Contraseña" id="contraseña" required>
       </br>
       <button id="btnIng" type="button" class="btn btn-primary btn-lg btn-block">Ingresar</button>
-    </br>
-     <!--Intentando hacer funcionar el botón de google, como falta la parte del backend arroja un error en consola.-->
+      </br>
+      <!--Intentando hacer funcionar el botón de google, como falta la parte del backend arroja un error en consola.-->
 
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><button></button></div>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><button></button></div>
       <script>
         function onSignIn(googleUser) {
-         
+          windows.location.href = "portada.html";
           var profile = googleUser.getBasicProfile();
-          console.log("ID: " + profile.getId()); 
-          console.log('Full Name: ' + profile.getName());
-          console.log('Given Name: ' + profile.getGivenName());
-          console.log('Family Name: ' + profile.getFamilyName());
-          console.log("Image URL: " + profile.getImageUrl());
-          console.log("Email: " + profile.getEmail());
-
-          // The ID token you need to pass to your backend:
-          var id_token = googleUser.getAuthResponse().id_token;
-          console.log("ID Token: " + id_token);
-
-          
+          localStorage.setItem("User" + profile.getName());
         }
       </script>
     </div>
@@ -74,7 +64,13 @@
     </div>
   </footer>
   <script src="js/login.js"></script>
-  <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer>
+  window.gapi.load('client:auth2', () => {
+    window.gapi.client.init({
+        clientId: '77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com',
+        plugin_name: "E-Mercado"
+    })
+  })</script>
 
 </body>
 
