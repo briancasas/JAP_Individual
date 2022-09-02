@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="google-signin-client_id"
     content="77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com">
-  <meta name="google-signin-scope" content="profile email">
   <meta name="google-site-verification" content="tn4IyQs1_oASFLLmKXshRaWRkVXXEjhckMBvZcCseGI" />
   <title>eMercado - Todo lo que busques está aquí</title>
 
@@ -45,12 +44,20 @@
 
       <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><button></button></div>
       <script>
-        function onSignIn(googleUser) {
-          windows.location.href = "portada.html";
-          var profile = googleUser.getBasicProfile();
+        function onSignIn(googleusercontent) {
           localStorage.setItem("User" + profile.getName());
+          windows.location.href = "portada.html";
+
+
         }
       </script>
+      <script src="https://apis.google.com/js/platform.js" async defer>
+        window.gapi.load('client:auth2', () => {
+          window.gapi.client.init({
+            clientId: '77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com',
+            plugin_name: "E-Mercado"
+          })
+        })</script>
     </div>
   </main>
   <footer class="text-muted">
@@ -64,14 +71,6 @@
     </div>
   </footer>
   <script src="js/login.js"></script>
-  <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer>
-  window.gapi.load('client:auth2', () => {
-    window.gapi.client.init({
-        clientId: '77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com',
-        plugin_name: "E-Mercado"
-    })
-  })</script>
-
 </body>
 
 </html>

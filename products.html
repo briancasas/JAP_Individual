@@ -43,41 +43,47 @@
     </div>
     <div class="row">
       <div class="col text-end">
+
         <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+          <input type="search" id="buscador" class="form-control" placeholder="Buscar" style="margin: 0px 5px 0px 5px;">
+
           <input type="radio" class="btn-check" name="options" id="sortACost">
           <label class="btn btn-light" for="sortACost"><i class="fas fa-sort-amount-up mr-1">$</i></label>
           <input type="radio" class="btn-check" name="options" id="sortDeCost">
           <label class="btn btn-light" for="sortDeCost"><i class="fas fa-sort-amount-down mr-1">$</i></label>
           <input type="radio" class="btn-check" name="options" id="sortByRel" checked>
           <label class="btn btn-light" for="sortByRel"><i class="fas fa-sort-amount-down mr-1">Rel</i></label>
+
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
-          <div class="row container p-0 m-0">
-            <div class="col">
-              <p class="font-weight-normal text-end my-2">Precio</p>
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
-            </div>
-            <div class="col">
-              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
-            </div>
-            <div class="col-3 p-0">
-              <div class="btn-group" role="group">
-                <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilterCost">Limpiar</button>
-              </div>
-            </div>
+
+      <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+        <div class="row container p-0 m-0">
+          <div class="col">
+
+          </div>
+          <div class="col">
+            <p class="font-weight-normal text-end my-2">Precio</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
+          </div>
+          <div class="col-3 p-0">
+
+            <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+            <button class="btn btn-link btn-sm" id="clearRangeFilterCost">Limpiar</button>
+
           </div>
         </div>
       </div>
-    <div class="row">
-      <div class="list-group" id="product-list-container">
-
-      </div>
     </div>
+
+    <div class="list-group" id="product-list-container">
+    </div>
+    
   </main>
   <footer class="text-muted">
     <div class="container">
