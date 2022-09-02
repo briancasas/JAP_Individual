@@ -188,10 +188,11 @@ a.custom-card:hover {
   color: orange;
 }
 
-.img_style{
+.img_style {
   display: flex;
   justify-content: center;
 }
+
 .img_style img {
   width: 40%;
   display: flex;
@@ -207,9 +208,21 @@ a.custom-card:hover {
   display: flex;
   max-width: 250px;
   margin: auto;
-  
-}
-#buscador {
- max-width: 100%;
 
+}
+
+#buscador {
+  max-width: 100%;
+
+}
+.row {
+  padding: 5px;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.list-group {
+  padding: 5px;
 }
