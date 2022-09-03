@@ -5,6 +5,11 @@ let minCost = undefined;
 let maxCost = undefined;
 let search = "";
 
+
+function setProdID(id) {
+    localStorage.setItem("ProdID", id);
+    window.location = "products-info.html"
+}
 //Función para recorrer el Array de un objeto y agregar elementos al HTML.
 function showProductsList() {
     let htmlContentToAppend = "";
@@ -13,10 +18,9 @@ function showProductsList() {
 
         if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
-                if(products.name.toLowerCase().includes(search.toLowerCase())){
-
+                if(products.name.toLowerCase().includes(search.toLowerCase()) || products.description.toLowerCase().includes(search.toLowerCase())){
                 htmlContentToAppend += `
-                <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+                <div onclick="setProdID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 
                  <div class="row">
                     <div class="col-3">
