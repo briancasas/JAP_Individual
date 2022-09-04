@@ -8,36 +8,36 @@ let search = "";
 
 function setProdID(id) {
     localStorage.setItem("ProdID", id);
-    window.location = "products-info.html"
+    window.location = "product-info.html"
 }
-//Función para recorrer el Array de un objeto y agregar elementos al HTML.
+/////////Función para recorrer el Array de un objeto y agregar elementos al HTML.///////////////
 function showProductsList() {
     let htmlContentToAppend = "";
 
     for (let products of currentProductsArray.products) {
-
+        /////////////////////////////***Condicional para filtro por precio***////////////////////////////////
         if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
-                if(products.name.toLowerCase().includes(search.toLowerCase()) || products.description.toLowerCase().includes(search.toLowerCase())){
+            ////////////////Condicional para busca de caracteres en nombre y descripcion del producto.***////////////////////////                
+            if (products.name.toLowerCase().includes(search.toLowerCase()) || products.description.toLowerCase().includes(search.toLowerCase())) {
                 htmlContentToAppend += `
                 <div onclick="setProdID(${products.id})" class="list-group-item list-group-item-action cursor-active">
-                
                  <div class="row">
                     <div class="col-3">
                     <img src="` + products.image + `" alt="product image" class="img-thumbnail">
                     </div>
                     <div class="col">
                      <div class="d-flex w-100 justify-content-between">
-                             <div class="mb-1">
+                            <div class="mb-1">
                                 <h4>`+ products.name + ` - ` + products.currency + ` ` + products.cost + `</h4> 
                                 <p> `+ products.description + `</p> 
-                                </div>
+                            </div>
                             <small class="text-muted">` + products.soldCount + ` vendidos</small> 
-                             </div>
-
-                             </div>
                         </div>
+
                     </div>
+                </div>
+                </div>
                 
         `
                 document.getElementById("product-list-container").innerHTML = htmlContentToAppend; //Por medio de DOM agregamos al html
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         showProductsList(currentProductsArray);
 
     });
+    ///////////Evento para limpiar inputs de filtro y search////////////////////
     document.getElementById("clearRangeFilterCost").addEventListener("click", function () {
         document.getElementById("rangeFilterCostMin").value = "";
         document.getElementById("rangeFilterCostMax").value = "";
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         search = "";
         showProductsList(currentProductsArray);
     });
-  //Input de busqueda por nombre.
+    ///////////Evento Input de busqueda por caracteres nombre y descripcion//////////
     document.getElementById("buscador").addEventListener("input", function () {
 
         search = document.getElementById("buscador").value;
@@ -121,6 +122,6 @@ document.addEventListener("DOMContentLoaded", function (a) {
         }
 
         showProductsList();
-        console.log(showProductsList);
+
     });
 })
