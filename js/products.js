@@ -1,16 +1,18 @@
 
 //array donde se cargarán los datos recibidos:
 let currentProductsArray = [];
+
 let minCost = undefined;
 let maxCost = undefined;
 let search = "";
 
 
-function setProdID(id) {
+/*function setProdID(id) {
     localStorage.setItem("ProdID", id);
     window.location = "product-info.html"
-}
-/////////Función para recorrer el Array de un objeto y agregar elementos al HTML.///////////////
+}*/
+
+/////////Función para recorrer el Array y agregar elementos al HTML.///////////////
 function showProductsList() {
     let htmlContentToAppend = "";
 
@@ -48,7 +50,7 @@ function showProductsList() {
 }
 
 document.addEventListener("DOMContentLoaded", function (a) {
-    getJSONData(LIST_AUTOS).then(function (resultObj) {
+    getJSONData(LIST_PRODUCTS).then(function (resultObj) {
         if (resultObj.status === "ok") {
             currentProductsArray = resultObj.data
             showProductsList()
@@ -92,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         search = "";
         showProductsList(currentProductsArray);
     });
-    ///////////Evento Input de busqueda por caracteres nombre y descripcion//////////
+    ///////////Escucha de evento Input de busqueda por caracteres nombre y descripcion//////////
     document.getElementById("buscador").addEventListener("input", function () {
 
         search = document.getElementById("buscador").value;
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
     });
 
 
-
+    /////////Escucha de evento para 
     document.getElementById("rangeFilterCost").addEventListener("click", function () {
         //Obtengo el mínimo y máximo de los intervalos para filtrar por costo
         //de costo por producto.
