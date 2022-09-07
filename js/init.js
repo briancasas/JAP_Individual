@@ -1,6 +1,6 @@
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";0
+const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/" + localStorage.getItem("ProdID") + ".json";
 const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";

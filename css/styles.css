@@ -226,3 +226,27 @@ a.custom-card:hover {
 .list-group {
   padding: 5px;
 }
+.img-inf img{
+ 
+  max-width: 23%;
+  box-shadow: 5px 5px 5px 0px;
+  margin: 5px;
+  color: black;
+
+}
+.thumbnail {position: relative; z-index: 0; }
+.thumbnail:hover{ background-color: transparent; z-index: 50; }
+.thumbnail span{ /* Estilos para la imagen agrandada */
+position: absolute;
+width: 100%;
+background-color: rgb(255, 255, 255);
+left: -100px;
+border: 1px double rgb(127, 121, 121);
+visibility: hidden;
+color: #ffffff;
+text-decoration: none;
+
+
+}
+.thumbnail span img{ max-width: 300%; }
+.thumbnail:hover span{ visibility: visible; left: 10px; }

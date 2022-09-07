@@ -1,22 +1,22 @@
 
 //array donde se cargarán los datos recibidos:
 let currentProductsArray = [];
-
 let minCost = undefined;
 let maxCost = undefined;
 let search = "";
 
 
-/*function setProdID(id) {
+function setProdID(id) {
     localStorage.setItem("ProdID", id);
     window.location = "product-info.html"
-}*/
+}
 
 /////////Función para recorrer el Array y agregar elementos al HTML.///////////////
 function showProductsList() {
     let htmlContentToAppend = "";
 
     for (let products of currentProductsArray.products) {
+       
         /////////////////////////////***Condicional para filtro por precio***////////////////////////////////
         if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         showProductsList(currentProductsArray);
 
     });
-    ///////////Evento para limpiar inputs de filtro y search////////////////////
+    ///////////Escucha de evento para limpiar inputs de filtro y search////////////////////
     document.getElementById("clearRangeFilterCost").addEventListener("click", function () {
         document.getElementById("rangeFilterCostMin").value = "";
         document.getElementById("rangeFilterCostMax").value = "";
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         search = "";
         showProductsList(currentProductsArray);
     });
-    ///////////Escucha de evento Input de busqueda por caracteres nombre y descripcion//////////
+    ///////////Escucha de evento Input *search* de busqueda por caracteres nombre y descripcion//////////
     document.getElementById("buscador").addEventListener("input", function () {
 
         search = document.getElementById("buscador").value;
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
     });
 
 
-    /////////Escucha de evento para 
+    /////////Escucha de evento de filtro por precio///////////////////////////
     document.getElementById("rangeFilterCost").addEventListener("click", function () {
         //Obtengo el mínimo y máximo de los intervalos para filtrar por costo
         //de costo por producto.
