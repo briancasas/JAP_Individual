@@ -42,22 +42,28 @@
       </br>
       <!--Intentando hacer funcionar el botón de google, como falta la parte del backend arroja un error en consola.-->
 
-      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><button></button></div>
-      <script>
-        function onSignIn(googleusercontent) {
-          localStorage.setItem("User" + profile.getName());
-          windows.location.href = "portada.html";
-
-
-        }
-      </script>
+      </br>
       <script src="https://apis.google.com/js/platform.js" async defer>
+
         window.gapi.load('client:auth2', () => {
           window.gapi.client.init({
             clientId: '77192039251-io53jg1pmj7lh43rruajccg9qjjf8gbp.apps.googleusercontent.com',
+            scope: 'email',
             plugin_name: "E-Mercado"
           })
-        })</script>
+        })
+      </script>
+
+      <div class="g-signin2" data-onsuccess="onSignIn"data-theme="dark"><button></button></div>
+
+      <script>
+        function onSignIn(googleusercontent) {
+          var profile = googleusercontent.getBasicProfile();
+          localStorage.setItem("User", profile.getGivenName());
+          window.location.href = "portada.html"
+        }
+      </script>
+    </div>
     </div>
   </main>
   <footer class="text-muted">
