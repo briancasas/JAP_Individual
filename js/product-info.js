@@ -110,9 +110,10 @@ document.getElementById("getCom").addEventListener("click", function(){
     let today = new Date();
     let now = today.toLocaleString("sv-SE");
 
+    if(nuevoDato !==""){
     newComent += `<li id="comentsList" list-style: none><strong>${localStorage.getItem("User")}</strong> ${now} ${showStars(rateNew)}
     </br>${nuevoDato}</li>`;
-
+    }
     document.getElementById("comments").innerHTML = newComent;
 
     document.getElementById("comArea").value="";
