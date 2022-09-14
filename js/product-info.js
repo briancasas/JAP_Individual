@@ -108,7 +108,7 @@ document.getElementById("getCom").addEventListener("click", function(){
     let nuevoDato = document.getElementById("comArea").value;
     let rateNew = document.getElementById("getRate").value;
     let today = new Date();
-    let now = today.toLocaleString("sq-AL");
+    let now = today.toLocaleString("sv-SE");
 
     newComent += `<li id="comentsList" list-style: none><strong>${localStorage.getItem("User")}</strong> ${now} ${showStars(rateNew)}
     </br>${nuevoDato}</li>`;
