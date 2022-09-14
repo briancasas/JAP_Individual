@@ -17,10 +17,12 @@ function showProductDescription() {
      </br>${infProductList.category}</p>
      <p><strong>Cantidad de vendidos: </strong>
      </br>${infProductList.soldCount}</p>` +
-        //////////////////////////imagenes////////////////
-        `
-    <span><strong>Imagenes ilustrativas</strong></span>
-  <div class="img-inf">
+
+
+        //////////////////////////Imagenes////////////////
+
+        `<span><strong>Imagenes ilustrativas</strong></span>
+    <div class="img-inf">
     <a class="thumbnail" href="#thumb"><img src="${infProductList.images[0]}" width="23%" /><span><img src="${infProductList.images[0]}" ></span></a>
     <a class="thumbnail" href="#thumb"><img src="${infProductList.images[1]}" width="23%" /><span><img src="${infProductList.images[1]}" ></span></a> 
     <a class="thumbnail" href="#thumb"><img src="${infProductList.images[2]}" width="23%" /><span><img src="${infProductList.images[2]}" ></span></a> 
@@ -37,6 +39,7 @@ function showProductDescription() {
 
 
 
+//////////////////////Funcion para mostrar comentarios de los productos//////////////////////////////
 
 function showProductComents() {
     let agregarComentario = "";
@@ -46,23 +49,12 @@ function showProductComents() {
         let coments = infProductComents[i];
         console.log(coments.score);
 
-
-
-
-
         agregarComentario += `<li id="comentsList" list-style: none;><strong>${coments.user}</strong> ${coments.dateTime} ${showStars(coments.score)} 
-</br>${coments.description}</li>
-   
-   `
+        </br>${coments.description}</li>`
 
+        document.getElementById("comments").innerHTML = agregarComentario+newComent
 
-        document.getElementById("comments").innerHTML = agregarComentario;
-
-
-
-
-
-
+        
     }
 
 }
@@ -77,10 +69,6 @@ document.addEventListener("DOMContentLoaded", function (a) {
             console.log(infProductList);
         }
 
-
-
-
-
     });
 
 })
@@ -93,17 +81,10 @@ document.addEventListener("DOMContentLoaded", function (a) {
             console.log(infProductComents);
         }
 
-
-
-
-
     });
 
-
-
-
-
 })
+///////////////////Funcion para mostrar estrellas//////////////
 function showStars(n) {
     let okStars = "";
     let nonStars = "";
@@ -114,11 +95,46 @@ function showStars(n) {
         }
         else if (j >= n) {
             nonStars += `<span class="fa fa-star"></span>`;
-        }       
+        }
     }
     return okStars + nonStars;
 }
 
 
+let newComent = [];
+
+document.getElementById("getCom").addEventListener("click", function(){
+
+    let nuevoDato = document.getElementById("comArea").value;
+    let rateNew = document.getElementById("getRate").value;
+    let today = new Date();
+    let now = today.toLocaleString("sq-AL");
+
+    newComent += `<li id="comentsList" list-style: none><strong>${localStorage.getItem("User")}</strong> ${now} ${showStars(rateNew)}
+    </br>${nuevoDato}</li>`;
+
+    document.getElementById("comments").innerHTML = newComent;
+
+    document.getElementById("comArea").value="";
+
+    let newComent_json = JSON.stringify(newComent);
+
+    localStorage.setItem("newCom", newComent_json);
+
+});
+
+//Recuperar datos.
+document.addEventListener("DOMContentLoaded", function(){
+
+    if(localStorage.getItem("newCom")){
+
+       newComent_json = localStorage.getItem("newCom");
+
+        newComent = JSON.parse(newComent_json);
+
+        document.getElementById("comments").innerHTML += newComent;
+    }
+    console.log(newComent);
+});
 
 
