@@ -16,7 +16,7 @@ function showProductsList() {
     let htmlContentToAppend = "";
 
     for (let products of currentProductsArray.products) {
-       
+
         /////////////////////////////***Condicional para filtro por precio***////////////////////////////////
         if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
@@ -39,9 +39,8 @@ function showProductsList() {
 
                     </div>
                 </div>
-                </div>
-                
-        `
+                </div>`
+
                 document.getElementById("product-list-container").innerHTML = htmlContentToAppend; //Por medio de DOM agregamos al html
             }
         }
@@ -50,7 +49,8 @@ function showProductsList() {
 }
 
 document.addEventListener("DOMContentLoaded", function (a) {
-    getJSONData(LIST_PRODUCTS).then(function (resultObj) {
+    let idCatGet = localStorage.getItem("catID");
+    getJSONData(PRODUCTS_URL + idCatGet + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
             currentProductsArray = resultObj.data
             showProductsList()
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
         showProductsList(currentProductsArray);
     });
 
-    //Ordenamos el Array según su relevancia ***Se toma como más relevante el producto mas vendido***
+    ////////Ordenamos el Array según su relevancia ***Se toma como más relevante el producto mas vendido***/////////////
 
     document.getElementById("sortByRel").addEventListener("click", function () {
         currentProductsArray.products.sort((a, b) => {
