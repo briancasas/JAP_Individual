@@ -278,3 +278,7 @@ text-decoration: none;
   text-align-last: center;
   margin-inline: auto;
 }
+
+.comTitle {
+  color: gray;
+}
