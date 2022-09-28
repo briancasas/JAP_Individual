@@ -44,4 +44,8 @@ let getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(){
 
   document.getElementById("User").innerHTML = localStorage.getItem("User");
+  document.getElementById("SignOut").addEventListener("click", function() 
+  {
+ window.localStorage.clear();
+  })
 })

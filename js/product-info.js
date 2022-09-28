@@ -6,7 +6,7 @@ let arrayComs = [];
 let newCom = localStorage.getItem("Nuevo comentario")
 
 
-///////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
+////////////////////////////////////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
 function showProductDescription() {
     let htmltoadd = "";
 
@@ -22,14 +22,18 @@ function showProductDescription() {
      <p><strong>Cantidad de vendidos: </strong>
      </br>${infProductList.soldCount}</p>`
 
-//////////////////////////////Recorrer imagens y mostrarlas////////////////////////////////////////////////
+    ////////////////////////////////////////////////Recorrer imagens y mostrarlas////////////////////////////////////////////////////
     let imgs = "";
     for (rutaImg of infProductList.images) {
-        imgs += `<a class="thumbnail" href="#thumb"><img src="${rutaImg}" width="23%" /><span><img src="${rutaImg}" ></span></a>`;
+        imgs += `<div class="carousel-item active">
+        <img src="${rutaImg}" class="d-block w-100" alt="...">
+      </div>`
+
         document.getElementById("imgs-Id").innerHTML = imgs;
     }
 
-    document.getElementById("InfoProd").innerHTML += htmltoadd;
+    document.getElementById("InfoProd").innerHTML = htmltoadd;
+
 }
 
 
@@ -44,7 +48,9 @@ document.addEventListener("DOMContentLoaded", function (a) {
             console.log(infProductList);
         }
 
-    });
+        relationProd();
+
+    })
 
 })
 ///////////////////////////Escucha de evento para mostrar comentarios de los productos *cuando carga el html*////////////////////
@@ -57,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function (a) {
 
             newCom_obj = JSON.parse(newCom);
 
-            //////////////Condicional para que traiga el comentario con mismo id que el producto////////////////////////////////
+            //////////////Condicional para que traiga el comentario con mismo id que el producto///////////////
 
             if ((newCom === null) || (newCom_obj.product !== parseInt(infoP))) {
                 showProductComents(infProductComents);
@@ -68,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function (a) {
             }
 
         }
+
+
     });
 
 });
@@ -95,8 +103,8 @@ document.getElementById("getCom").addEventListener("click", function () {
 
     localStorage.setItem("Nuevo comentario", arrayComs);
 
-    
-////////////// guardar array de obj en localstorage///////////
+
+    ////////////// guardar array de obj en localstorage///////////
 
     /*let datos_existentes = localStorage.getItem('Nuevo comentario');
     datos_existentes = datos_existentes === null ? [] : JSON.parse(datos_existentes);
@@ -156,3 +164,36 @@ function showNewComents() {
         document.getElementById("comments").innerHTML = agregarComentario
     }
 }
+
+////////////////////////Para mostrar productos relacionadose//////////////////////////
+
+
+
+function setNewProdID(id) {         ////***Función para cambiar ProdID y refrescar página
+    localStorage.setItem("ProdID", id);
+    window.location = "product-info.html"
+}
+
+function relationProd() {
+    let addToRela = "";
+
+    for (rela of infProductList.relatedProducts) {
+   
+
+        addToRela += `
+    <div onclick="setNewProdID(${rela.id})" class="col-md-4"> 
+      <div class="card mb-4 shadow-sm custom-card cursor-active" id="${rela.name}">
+        <img class="bd-placeholder-img card-img-top" src="${rela.image}"
+          alt="Imagen representativa del producto relacionado">
+        <h3 class="m-3">${rela.name}</h3>
+      </div>
+    </div>
+    
+`
+
+    }
+
+    document.getElementById("relProds").innerHTML = addToRela;
+
+}
+

@@ -29,8 +29,14 @@
           <li class="nav-item">
             <a class="nav-link active" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item"><a class="nav-link" id="User"></a>
-          </li>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="User" data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="User">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="index.html" id="SignOut">Cerrar sesion</a></li>
+            </ul>
         </ul>
       </div>
     </div>
