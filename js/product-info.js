@@ -25,9 +25,7 @@ function showProductDescription() {
     ////////////////////////////////////////////////Recorrer imagens y mostrarlas////////////////////////////////////////////////////
     let imgs = "";
     for (rutaImg of infProductList.images) {
-        imgs += `<div class="carousel-item active">
-        <img src="${rutaImg}" class="d-block w-100" alt="...">
-      </div>`
+        imgs += `<a class="thumbnail" href="#thumb"><img src="${rutaImg}" width="23%" /><span><img src="${rutaImg}" ></span></a>`;
 
         document.getElementById("imgs-Id").innerHTML = imgs;
     }
@@ -196,4 +194,3 @@ function relationProd() {
     document.getElementById("relProds").innerHTML = addToRela;
 
 }
-
