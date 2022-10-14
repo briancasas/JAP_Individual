@@ -4,14 +4,17 @@ let photos = [];
 let infoP = localStorage.getItem("ProdID");
 let arrayComs = [];
 let newCom = localStorage.getItem("Nuevo comentario")
-
+let cartArray = [];
 
 ////////////////////////////////////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
 function showProductDescription() {
     let htmltoadd = "";
 
     htmltoadd = `
-    <h1 "mb-1">${infProductList.name}</h1>
+    <div class="d-flex"><h1 "mb-1">${infProductList.name}</h1><button type="button" class="btn btn-primary btn-sm" style="background-color:green; margin-left: auto; " id="agregar-Al-Carrito">
+     Comprar
+ </button>
+    </div>
     <hr>
     <p class= "list-gropu-item"><strong>Precio: </strong> 
     </br> ${infProductList.currency} ${infProductList.cost}</p>
@@ -20,7 +23,8 @@ function showProductDescription() {
      <p><strong>Categoría: </strong>
      </br>${infProductList.category}</p>
      <p><strong>Cantidad de vendidos: </strong>
-     </br>${infProductList.soldCount}</p>`
+     </br>${infProductList.soldCount}</p>
+     `
 
     ////////////////////////////////////////////////Recorrer imagens y mostrarlas////////////////////////////////////////////////////
     let imgs = "";
@@ -31,6 +35,31 @@ function showProductDescription() {
     }
 
     document.getElementById("InfoProd").innerHTML = htmltoadd;
+
+
+////////////////////////////////////////// Boton agregar a local storage el producto //////////////////////////////////////////////////    
+
+    document.getElementById("agregar-Al-Carrito").addEventListener("click", function () {
+
+
+        let newCartProd = {
+            userID: localStorage.getItem("User"),
+            id: infProductList.id,
+            name: infProductList.name,
+            count: 1,
+            unitCost: infProductList.cost,
+            currency: infProductList.currency,
+            image: infProductList.images[1],
+            
+        };
+    
+        let newCartProd_json = JSON.stringify(newCartProd);
+        cartArray.push(newCartProd_json);
+        
+        localStorage.setItem("Carrito", cartArray);
+
+        let ProdInCart = localStorage.getItem('Carrito');
+})
 
 }
 
@@ -194,3 +223,4 @@ function relationProd() {
     document.getElementById("relProds").innerHTML = addToRela;
 
 }
+

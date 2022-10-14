@@ -30,22 +30,74 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="User" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="User" data-bs-toggle="dropdown"
+              aria-expanded="false">
             </button>
             <ul class="dropdown-menu" aria-labelledby="User">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><a class="dropdown-item" href="index.html">Cerrar sesion</a></li>
+              <li><a class="dropdown-item" href="index.html" id="SignOut">Cerrar sesion</a></li>
             </ul>
+          </div>
         </ul>
       </div>
     </div>
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <h2 class="text-center">Carrito de compras</h2>
+    <legend class="text-muted">Articulos a comprar</legend>
+    <div class="row justify-content-evenly">
+      <div class="col-2"><strong>Nombre</strong></div>
+      <div class="col-2"><strong>Costo</strong></div>
+      <div class="col-2"><strong>Cantidad</strong></div>
+      <div class="col-2"><strong>Subtotal</strong></div>
+    </div>
+      <hr color="black" style="opacity:unset; margin: 0.25rem;">
+      <div id="ProdsCart"></div>
+      
+    <hr style="margin: 0.50rem;">
+    <hr style="margin: 1rem;">
+    </div>
+    </div>
+    <div class="container">
+      <legend class="text-muted">Método de envío</legend>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Premium 2 a 5 días (15%)
+        </label>
       </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Express 5 a 8 días (7%)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Standard 12 a 15 días (5%)
+        </label>
+      </div>
+      <form action="">
+        <div class="form-row">
+          <legend class="text-muted">Dirección: </legend>
+          <div class="form-group col-sm-6">
+            <label for="address">Calle</label>
+            <input type="text" class="form-control" id="addres" placeholder="Nombre de calle" required>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="numAdress">Numero</label>
+            <input type="text" class="form-control" id="numAdress" placeholder="Numero de puerta" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <label for="corner">Esquina</label>
+            <input type="text" class="form-control" id="corner" placeholder="Esquina" required>
+          </div>
+        </div>
     </div>
   </main>
   <footer class="text-muted">

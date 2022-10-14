@@ -294,3 +294,12 @@ text-decoration: none;
   background-color: #212529;
   border-color: #212529;
 }
+
+.prodCartImg {
+  max-width: 5%;
+  position: absolute;
+
+}
+#inCount {
+  max-width: 70%;
+}
