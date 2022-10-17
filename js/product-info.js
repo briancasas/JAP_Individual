@@ -4,7 +4,6 @@ let photos = [];
 let infoP = localStorage.getItem("ProdID");
 let arrayComs = [];
 let newCom = localStorage.getItem("Nuevo comentario")
-let cartArray = [];
 
 ////////////////////////////////////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
 function showProductDescription() {
@@ -40,29 +39,30 @@ function showProductDescription() {
 ////////////////////////////////////////// Boton agregar a local storage el producto //////////////////////////////////////////////////    
 
     document.getElementById("agregar-Al-Carrito").addEventListener("click", function () {
+    addArticlesToUser();
+       
 
 
-        let newCartProd = {
-            userID: localStorage.getItem("User"),
-            id: infProductList.id,
-            name: infProductList.name,
-            count: 1,
-            unitCost: infProductList.cost,
-            currency: infProductList.currency,
-            image: infProductList.images[1],
-            
-        };
-    
-        let newCartProd_json = JSON.stringify(newCartProd);
-        cartArray.push(newCartProd_json);
-        
-        localStorage.setItem("Carrito", cartArray);
-
-        let ProdInCart = localStorage.getItem('Carrito');
 })
-
 }
 
+
+function addArticlesToUser(){
+    let articles = {
+        id: infProductList.id,
+        name: infProductList.name,
+        count: 1,
+        unitCost: infProductList.cost,
+        currency: infProductList.currency,
+        image: infProductList.images[1],
+        
+    };
+    let cartArray = JSON.parse(localStorage.getItem("Articles:")) || [];
+    cartArray.push(articles);
+    
+    let cartArray_json = JSON.stringify(cartArray)
+    localStorage.setItem("Articles:", cartArray_json);
+}
 
 ///////////////////////////////Escucha de evento para mostrar Info de productos *cuando carga el html*//////////////////////////
 
@@ -131,13 +131,6 @@ document.getElementById("getCom").addEventListener("click", function () {
     localStorage.setItem("Nuevo comentario", arrayComs);
 
 
-    ////////////// guardar array de obj en localstorage///////////
-
-    /*let datos_existentes = localStorage.getItem('Nuevo comentario');
-    datos_existentes = datos_existentes === null ? [] : JSON.parse(datos_existentes);
-    datos_existentes.push(newComentary);
-    localStorage.setItem('Nuevo comentario', JSON.stringify(datos_existentes));
-    */
 
 });
 
