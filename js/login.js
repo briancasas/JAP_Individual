@@ -1,3 +1,4 @@
+let cartUser = [];
 //Función que valida los input de inicio de sesión.
 function validacion() {
     let pass = document.getElementById("contraseña").value;
@@ -8,6 +9,7 @@ function validacion() {
 
     else {
         localStorage.setItem("User", email)
+        cartCreate();
         redirPortada();
 
     }
@@ -32,6 +34,11 @@ boton.addEventListener("click", validacion);
 //Función para redireccionar a la portada (página principal) del E-Commerce
 function redirPortada() {
     window.location.href = "portada.html";
+}
+
+function cartCreate(){
+   let userToCart = localStorage.getItem("User");
+   localStorage.setItem("Cart", userToCart.concat("A"))
 }
 
 

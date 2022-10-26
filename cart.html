@@ -62,24 +62,26 @@
     </div>
     <div class="container">
       <legend class="text-muted">Método de envío</legend>
+      <form action="" class="form" id="shipping-form"></form>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
+        <input class="form-check-input rad-env" type="radio" name="shipMet" value="0.15" id="premium" >
+        <label class="form-check-label" for="premium">
           Premium 2 a 5 días (15%)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">
+        <input class="form-check-input rad-env" type="radio" name="shipMet" value="0.07"  id="express">
+        <label class="form-check-label" for="express">
           Express 5 a 8 días (7%)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">
+        <input class="form-check-input rad-env" type="radio" name="shipMet" value="0.05" id="standard" checked>
+        <label class="form-check-label" for="standard">
           Standard 12 a 15 días (5%)
         </label>
       </div>
+      
       <form action="">
         <div class="form-row">
           <legend class="text-muted">Dirección: </legend>
@@ -98,7 +100,55 @@
             <input type="text" class="form-control" id="corner" placeholder="Esquina" required>
           </div>
         </div>
+        <hr>
+
+
+  
+        
+    <div class="row">
+      <div class="col">
+        <legend class="text-muted">Costos:</legend>
+        <ul class="list-group mb-3 ">
+          <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+            <h5>SubTotal </h5><span id="subt"></span>
+          </li>
+          <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+            <h5>Envío </h5><span id="envio"></span>
+          </li>
+          <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+            <h5>Total </h5><span id="total"></span>
+          </li>
+        </ul>
+      </div>
     </div>
+    
+      <button type="button" class="btn btn-primary" data-bs-toggle="exampleModal" data-bs-target="#exampleModal">
+        Método de pago
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
   </main>
   <footer class="text-muted">
     <div class="container">
