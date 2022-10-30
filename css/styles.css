@@ -303,4 +303,8 @@ text-decoration: none;
 #inCount {
   max-width: 70%;
 }
+.noCount {
+ 
+  border-color: #dc3545;
+}
 
