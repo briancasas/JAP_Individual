@@ -39,6 +39,7 @@ nav a {
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+  
 }
 
 @media (min-width: 768px) {
@@ -308,3 +309,15 @@ text-decoration: none;
   border-color: #dc3545;
 }
 
+
+
+
+.img-profile {
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  height: 3rem;
+  width: 3rem;
+  border-color: aliceblue;
+  margin-right: 5px ;
+}

@@ -51,7 +51,11 @@ let countP = "no"
 
 
 
+if (localStorage.getItem('User') === null) {
+  alert("Debes estar logueado para poder acceder al carrito")
+  window.location.href = "index.html";
 
+}
 /////////////////////////////////Funcion para mostrar carrito/////////////////////////////////////////////////////////
 
 function showCart() {
@@ -204,6 +208,8 @@ function validateForm() {
   }
 
 
+  /////////////////////////////////////////// Condicional feedback tipo de pago/////////////////////////////////////////////////////
+
   for (let i = 0; i < document.formaddress.paymet.length; i++) {
 
     if (document.formaddress.paymet[i].checked) {
@@ -212,7 +218,7 @@ function validateForm() {
       document.getElementById("noCheckRadio").innerHTML = ""
       document.getElementById("modalP").classList.remove("btn-danger");
       document.getElementById("modalP").classList.add("btn-success");
-
+      
     }
 
   }
@@ -225,14 +231,14 @@ function validateForm() {
   }
 }
 
-
-
+///////////////////////////// Función Validaciones Modal /////////////////////////////////////////////////
 function modalValidation() {
   if (!submitModal) return
   
   if (!cardNum.value) {
     cardNum.classList.add("is-invalid");
     cardNum.classList.remove("is-valid");
+
   } else {
     cardNum.classList.add("is-valid");
     cardNum.classList.remove("is-invalid");
@@ -280,10 +286,10 @@ function radioCreditSelected() {
   cardNum.disabled = false;
   expMonth.disabled = false;
   codSeg.disabled = false;
-  transfNum.removeAttribute("required");
+  /*transfNum.removeAttribute("required");
   expMonth.setAttribute("required", "");
   codSeg.setAttribute("required", "");
-  cardNum.setAttribute("required", "");
+  cardNum.setAttribute("required", "");*/
 };
 
 creditRadio.addEventListener('change', radioCreditSelected);
@@ -293,10 +299,10 @@ function radioTransferSelected() {
   cardNum.disabled = true;
   expMonth.disabled = true;
   codSeg.disabled = true;
-  expMonth.removeAttribute("required");
+  /*expMonth.removeAttribute("required");
   codSeg.removeAttribute("required");
   cardNum.removeAttribute("required");
-  transfNum.setAttribute("required", "");
+  transfNum.setAttribute("required", "");*/
 
 };
 
@@ -336,7 +342,7 @@ document.addEventListener("DOMContentLoaded", loadChangesEvents);
 /////////////////////////////Funcion con condicionales para enviar o no el alerta de compra exitosa////////////////////
 
 function purchaseButton() {
-  if (address.value != "" && addressNum.value != "" && esqAddress.value != "" && shipp === "si" && pay === "si" && countP === "si" && submitModal == true) {
+  if (address.value != "" && addressNum.value != "" && esqAddress.value != "" && shipp === "si" && pay === "si" && countP === "si") {
     let alertSuccess = "";
     alertSuccess +=
       `<div class="alert alert-success" role="alert">

@@ -4,6 +4,7 @@ let photos = [];
 let infoP = localStorage.getItem("ProdID");
 let arrayComs = [];
 let newCom = localStorage.getItem("Nuevo comentario")
+let articlesBox = [];
 
 ////////////////////////////////////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
 function showProductDescription() {
@@ -46,8 +47,12 @@ function showProductDescription() {
 })
 }
 
-
+////////////////////////////////Funcion agregar productos al carrito///////////////////////////////////////
 function addArticlesToUser(){
+
+    let inStorage = false;
+
+
     let articles = {
         id: infProductList.id,
         name: infProductList.name,
@@ -57,11 +62,43 @@ function addArticlesToUser(){
         image: infProductList.images[1],
         
     };
-    let cartArray = JSON.parse(localStorage.getItem("Articles:")) || [];
+    if (localStorage.getItem('Articles:') !== null) {
+
+        articlesBox = JSON.parse(localStorage.getItem('Articles:'))
+
+
+
+        articlesBox.forEach(element => {
+            if (element.name === articles.name) {
+                inStorage = true
+                document.getElementById("productFeedback").innerHTML=`<div class="alert alert-warning" role="alert">
+            <p>Este producto ya se encuentra en el carrito</p><a href="cart.html">Ir al carrito</a>
+            </div>`
+            }
+
+        })
+        if (inStorage === false) {
+            articlesBox.push(articles)
+            document.getElementById("productFeedback").innerHTML=`<div class="alert alert-success" role="alert">
+            <p>Se agregó este producto al carrito</p><a href="cart.html">Ir al carrito</a>
+            </div>`
+            localStorage.setItem('Articles:', JSON.stringify(articlesBox))
+        }
+
+    } else {
+        articlesBox.push(articles)
+        document.getElementById("productFeedback").innerHTML=`<div class="alert alert-success" role="alert">
+            <p>Se agregó este producto al carrito</p><a href="cart.html">Ir al carrito</a>
+            </div>`
+        localStorage.setItem('Profiles:', JSON.stringify(articlesBox))
+
+    }
+
+    /*let cartArray = JSON.parse(localStorage.getItem("Articles:")) || [];
     cartArray.push(articles);
     
     let cartArray_json = JSON.stringify(cartArray)
-    localStorage.setItem("Articles:", cartArray_json);
+    localStorage.setItem("Articles:", cartArray_json);*/
 }
 
 ///////////////////////////////Escucha de evento para mostrar Info de productos *cuando carga el html*//////////////////////////

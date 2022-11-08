@@ -6,47 +6,59 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
+let storageImgProfile = localStorage.getItem('Profiles:')
+let usersName = localStorage.getItem("User");
 
-
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = 'ok';
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
     });
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("User").innerHTML = localStorage.getItem("User");
-  document.getElementById("SignOut").addEventListener("click", function() 
-  {
- window.localStorage.clear();
+  document.getElementById("SignOut").addEventListener("click", function () {
+    window.localStorage.removeItem("User");
   })
-  
+  if (localStorage.getItem('Profiles:') !== null) {
+    storageImgProfile = JSON.parse(localStorage.getItem('Profiles:'))
+    storageImgProfile.forEach(element => {
+
+      if (element.name === usersName) {
+        let img = document.getElementById('profileImg');
+        img.src = element.image;
+      }
+
+    });
+
+  }
+
 })
