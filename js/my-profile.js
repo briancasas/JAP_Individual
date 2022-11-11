@@ -9,17 +9,14 @@ let secSurInp = document.getElementById('secondSurname')
 let emailInp = document.getElementById('emailProfile')
 let telInp = document.getElementById('telephone')
 let profiles = "";
+let img1 = document.getElementById("profileImg").src
 
 
 
 
 
 
-if (localStorage.getItem('User') === null) {
-    alert("Debes estar logueado para poder acceder a su perfil")
-    window.location.href = "index.html";
 
-}
 
 
 
@@ -63,9 +60,29 @@ const addProfiles = () => {
         localStorage.setItem('Profiles:', JSON.stringify(box))
 
     }
+    if (!userInp.value) {
+        document.getElementById('firstName').classList.add("is-invalid");
+        document.getElementById('firstName').classList.remove("is-valid");
+      } else {
+        document.getElementById('firstName').classList.add("is-valid");
+        document.getElementById('firstName').classList.remove("is-invalid");
+      }
+      if(!surInp.value) {
+        document.getElementById('surname').classList.add("is-invalid");
+        document.getElementById('surname').classList.remove("is-valid");
+      } else {
+        document.getElementById('surname').classList.add("is-valid");
+        document.getElementById('surname').classList.remove("is-invalid");
+      }
+      if(!emailInp.value) {
+        document.getElementById('emailProfile').classList.add("is-invalid");
+        document.getElementById('emailProfile').classList.remove("is-valid");
+      } else {
+        document.getElementById('emailProfile').classList.add("is-valid");
+        document.getElementById('emailProfile').classList.remove("is-invalid");
+      }
 
-
-
+    
 }
 
 
@@ -74,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     if (localStorage.getItem('Profiles:') !== null) {
         profileStorage.forEach(element => {
 
-            if (element.name === userName) {
+            if (element.email === userName) {
                 userInp.value = element.name;
                 secUserInp.value = element.surName;
                 surInp.value = element.secondName;
@@ -83,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 telInp.value = element.telephone;
             }
             else {
-                userInp.value = userName;
+                emailInp.value = userName;
             }
 
         });
@@ -92,5 +109,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
 })
 
 document.getElementById("saveProfile").addEventListener('click', addProfiles);
+
+
+
+
 
 

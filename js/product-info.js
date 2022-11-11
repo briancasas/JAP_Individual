@@ -6,13 +6,14 @@ let arrayComs = [];
 let newCom = localStorage.getItem("Nuevo comentario")
 let articlesBox = [];
 
+
 ////////////////////////////////////////// Funcion para mostrar descripcion de los productos///////////////////////////////////////
 function showProductDescription() {
     let htmltoadd = "";
 
     htmltoadd = `
     <div class="d-flex"><h1 "mb-1">${infProductList.name}</h1><button type="button" class="btn btn-primary btn-sm" style="background-color:green; margin-left: auto; " id="agregar-Al-Carrito">
-     Comprar
+     Añadir al carrito
  </button>
     </div>
     <hr>
@@ -90,7 +91,7 @@ function addArticlesToUser(){
         document.getElementById("productFeedback").innerHTML=`<div class="alert alert-success" role="alert">
             <p>Se agregó este producto al carrito</p><a href="cart.html">Ir al carrito</a>
             </div>`
-        localStorage.setItem('Profiles:', JSON.stringify(articlesBox))
+        localStorage.setItem('Articles:', JSON.stringify(articlesBox))
 
     }
 

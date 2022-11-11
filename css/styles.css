@@ -222,7 +222,6 @@ a.custom-card:hover {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
 }
 .list-group {
   padding: 5px;
@@ -321,3 +320,32 @@ text-decoration: none;
   border-color: aliceblue;
   margin-right: 5px ;
 }
+.img-profile2 {
+  border-radius: 5%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  margin-right: 5px ;
+  max-width: 200px;
+  box-shadow: 7px 7px 5px 5px;
+}
+
+.navbar-nav .dropdown-menu{
+  position: absolute;
+}
+.btn-primario {
+  background-color: #006ed2;
+  border: 1px solid #006ed2;
+  color: #fff;
+  border-radius: 2.2rem;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+.image-upload img
+{
+    cursor: pointer;
+}
+

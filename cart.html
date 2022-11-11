@@ -9,6 +9,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+     
 </head>
 
 <body>
@@ -30,7 +31,8 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown d-flex">
-            <img src="" onerror="this.src='img/img_perfil.png';" alt="" class="img-profile d-lg-block d-sm-none d-xs-none" id="profileImg">
+            <img src="" onerror="this.src='img/img_perfil.png';" alt=""
+              class="img-profile d-lg-block d-sm-none d-xs-none" id="profileImg">
             <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="User" data-bs-toggle="dropdown"
               aria-expanded="false">
             </button>
@@ -46,176 +48,182 @@
   </nav>
   <main>
     <form action="" class="form" id="shipping-form" name="f1">
-    <div id="paid-success" style="text-align: center"></div>
-    <div class="container">
-      <h2 class="text-center">Carrito de compras</h2>
-      <legend class="text-muted">Articulos a comprar</legend>
-      <div class="row justify-content-evenly">
-        <div class="col-2"><strong>Nombre</strong></div>
-        <div class="col-2"><strong>Costo</strong></div>
-        <div class="col-2"><strong>Cantidad</strong></div>
-        <div class="col-2"><strong>Subtotal</strong></div>
-      </div>
-      <hr color="black" style="opacity:unset; margin: 0.25rem;">
-      
+      <div id="paid-success" style="text-align: center"></div>
+      <div class="container">
+        <h2 class="text-center">Carrito de compras</h2>
+        <legend class="text-muted">Articulos a comprar</legend>
+        <div class="row justify-content-evenly">
+          <div class="col-2"><strong>Nombre</strong></div>
+          <div class="col-2"><strong>Costo</strong></div>
+          <div class="col-2"><strong>Cantidad</strong></div>
+          <div class="col-2"><strong>Subtotal</strong></div>
+        </div>
+        <hr color="black" style="opacity:unset; margin: 0.25rem;">
+
         <div id="ProdsCart"></div>
         <hr style="margin: 0.50rem;">
         <div id="alertInp" style="color: #dc3545; text-align:center;"></div>
-        <hr style="margin: 1rem;">
-    </div>
-    </div>
-    <div class="container">
-      <legend class="text-muted">Método de envío</legend>
 
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="shipp" value="0.15" id="premium">
-        <label class="form-check-label" for="premium">
-          Premium 2 a 5 días (15%)
-        </label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="shipp" value="0.07" id="express">
-        <label class="form-check-label" for="express">
-          Express 5 a 8 días (7%)
-        </label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="shipp" value="0.05" id="standard">
-        <label class="form-check-label" for="standard">
-          Standard 12 a 15 días (5%)
-        </label>
-      </div>
-      <span id="noCheckBox" style="color: #dc3545;"></span>
-      </form>
-      <form action="" id="form-address" name="formaddress">
-        <div class="form-row">
-          <legend class="text-muted">Dirección: </legend>
-          <div class="form-group col-sm-6">
-            <label for="address" class="form-label">Calle</label>
-            <input type="text" name="address" class="form-control" id="address" placeholder="Nombre de calle">
-            <div class="invalid-feedback">El campo no puede estar vacío, escriba una calle</div>
-          </div>
-          <div class="form-group col-sm-6">
-            <label for="numAdress">Numero</label>
-            <input type="text" class="form-control" id="numAddress" placeholder="Numero de puerta" name="numAddress">
-            <div class="invalid-feedback">El campo no puede estar vacío, escriba un número de puerta</div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-sm-6">
-            <label for="esq">Esquina</label>
-            <input type="text" class="form-control" id="esq" placeholder="Esquina" name="esq">
-            <div class="invalid-feedback">El campo no puede estar vacío, escriba una esquina</div>
-          </div>
-        </div>
-        <hr>
+      <div class="container">
+        <legend class="text-muted">Método de envío</legend>
 
-        <div class="row">
-          <div class="col">
-            <legend class="text-muted">Costos:</legend>
-            <ul class="list-group mb-3 ">
-              <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
-                <h5>SubTotal </h5><span id="subt"></span>
-              </li>
-              <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
-                <h5>Envío </h5><span id="envio"></span>
-              </li>
-              <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
-                <h5>Total</h5><strong><span id="total"></span></strong>
-              </li>
-            </ul>
-          </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shipp" value="0.15" id="premium">
+          <label class="form-check-label" for="premium">
+            Premium 2 a 5 días (15%)
+          </label>
         </div>
-        <hr>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shipp" value="0.07" id="express">
+          <label class="form-check-label" for="express">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="shipp" value="0.05" id="standard">
+          <label class="form-check-label" for="standard">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>
+        <span id="noCheckBox" style="color: #dc3545;"></span>
+    </form>
+    <form action="" id="form-address" name="formaddress">
+      <div class="form-row">
+        <legend class="text-muted">Dirección: </legend>
+        <div class="form-group col-sm-6">
+          <label for="address" class="form-label">Calle</label>
+          <input type="text" name="address" class="form-control" id="address" placeholder="Nombre de calle">
+          <div class="invalid-feedback">El campo no puede estar vacío, escriba una calle</div>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="numAdress">Numero</label>
+          <input type="text" class="form-control" id="numAddress" placeholder="Numero de puerta" name="numAddress">
+          <div class="invalid-feedback">El campo no puede estar vacío, escriba un número de puerta</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <label for="esq">Esquina</label>
+          <input type="text" class="form-control" id="esq" placeholder="Esquina" name="esq">
+          <div class="invalid-feedback">El campo no puede estar vacío, escriba una esquina</div>
+        </div>
+      </div>
+      <hr>
 
-        <button id="modalP" data-backdrop="static" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-pagos">
+      <div class="row">
+        <div class="col">
+          <legend class="text-muted">Costos:</legend>
+          <ul class="list-group mb-3 ">
+            <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+              <h5>SubTotal </h5><span id="subt"></span>
+            </li>
+            <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+              <h5>Envío </h5><span id="shippT"></span>
+            </li>
+            <li class="list-group-item justify-content-between d-flex bg-dark-ligth">
+              <h5>Total</h5><strong><span id="tot"></span></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-center">
+
+        <button id="modalP" data-backdrop="static" type="button" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#modal-pagos">
           Método de pago
         </button>
+      </div>
+
+      <!-- Modal tipo de pago -->
+      <div class="modal fade" id="modal-pagos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-block">
+              <legend class="modal-title" id="exampleModalLabel">Forma de pago</legend>
 
 
-        <!-- Modal tipo de pago -->
-        <div class="modal fade" id="modal-pagos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-              <div class="modal-header d-block">
-                <legend class="modal-title" id="exampleModalLabel">Forma de pago</legend>
+              <table class="table table-hover">
+                <tr>
+                  <td colspan="2">
 
+                    <input type="radio" id="creditRadio" name="paymet">
+                    <label for="creditRadio">Crédito</label>
 
-                <table class="table table-hover">
-                  <tr>
-                    <td colspan="2">
-
-                      <input type="radio" id="creditRadio" name="paymet">
-                      <label for="creditRadio">Crédito</label>
-
-                      <div class="card-body p-0 mb-0">
-                        <form action="" class="p-2" id="cardForm">
-                          <div class="form-group">
-                            <label for="cardNumber">Número de tarjeta</label>
-                            <input type="number" class="form-control" id="cardNumber" name="cardNumber">
-                            <div class="invalid-feedback">El campo no puede estar vacío</div>
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <div class="form-group">
-                                <label for="cvs">CVV</label>
-                                <input type="number" class="form-control" max="999" min="001" id="cvv" name="cvv">
-                                <div class="invalid-feedback">El campo no puede estar vacío</div>
-                              </div>
+                    <div class="card-body p-0 mb-0">
+                      <form action="" class="p-2" id="cardForm">
+                        <div class="form-group">
+                          <label for="cardNumber">Número de tarjeta</label>
+                          <input type="number" class="form-control" id="cardNumber" name="cardNumber">
+                          <div class="invalid-feedback">El campo no puede estar vacío</div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="cvs">CVV</label>
+                              <input type="number" class="form-control" max="999" min="001" id="cvv" name="cvv">
+                              <div class="invalid-feedback">El campo no puede estar vacío</div>
                             </div>
-                            <div class="col">
-                              <div class="form-group">
-                                <label for="month">Vencimiento</label>
-                                <div class="form-row">
-                                  <div class="col">
-                                    <input type="month" class="form-control" id="month" name="month" >
-                                    <div class="invalid-feedback">Debe seleccionar una fecha</div>
-                                  </div>
-                                  <div class="col">
-
-                                  </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="month">Vencimiento</label>
+                              <div class="form-row">
+                                <div class="col">
+                                  <input type="month" class="form-control" id="month" name="month">
+                                  <div class="invalid-feedback">Debe seleccionar una fecha</div>
                                 </div>
+                                <div class="col">
 
+                                </div>
                               </div>
+
                             </div>
                           </div>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
-                  <hr>
-                  <tr>
-                    <td colspan="2">
-                      <input type="radio" id="transferRadio" name="paymet">
-                      <label for="transferRadio">Transferencia Bancaria</label>
-                      <div class="card-body p-0 mb-0">
-                        <form action="" class="p-2" id="trasferForm">
-                          <div class="form-group">
-                            <span id="alertTransfer"></span>
-                            <label for="transferNumber">Número de Cuenta</label>
-                            <input type="number" class="form-control" id="transferNumber" name="transferNumber">
-                            <div class="invalid-feedback">El campo no puede estar vacío</div>
-                          </div>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
+                        </div>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                <hr>
+                <tr>
+                  <td colspan="2">
+                    <input type="radio" id="transferRadio" name="paymet">
+                    <label for="transferRadio">Transferencia Bancaria</label>
+                    <div class="card-body p-0 mb-0">
+                      <form action="" class="p-2" id="trasferForm">
+                        <div class="form-group">
+                          <span id="alertTransfer"></span>
+                          <label for="transferNumber">Número de Cuenta</label>
+                          <input type="number" class="form-control" id="transferNumber" name="transferNumber">
+                          <div class="invalid-feedback">El campo no puede estar vacío</div>
+                        </div>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
 
-                </table>
+              </table>
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="payClose">Cerrar</button>
-                <button type="button" class="btn btn-success"  id="payMetodOk">Guardar</button>
-              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="payClose">Cerrar</button>
+              <button type="button" class="btn btn-success" id="payMetodOk">Guardar</button>
             </div>
           </div>
         </div>
-        <span id="noCheckRadio" style="color: #dc3545;"></span>
-        <hr>
-        <button type="submit" class="btn btn-primary" id="payButton">Comprar</button>
-      </form>
+      </div>
+      <div class="d-flex justify-content-center">
+        <span id="noCheckRadio" style="color: #dc3545; text-align: center;"></span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn-lg btn-primario " id="payButton">Comprar</button>
+      </div>
+    </form>
     </div>
 
 

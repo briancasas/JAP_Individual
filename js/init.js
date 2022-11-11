@@ -60,5 +60,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
+  (function(){
+    /** @type {Node} */
+    var imgInput = document.getElementById( "imagen-entrada" ),
+    /** @type {Node} */
+    imgContainer = document.getElementById( "profileImg" ),
+    imgContainer2 = document.getElementById( "profileImg2" ),
+    /** Restore image src from local storage */
+    updateUi = function() {
+      imgContainer.src = window.localStorage.getItem( usersName + "image-base64" );
+      imgContainer2.src = window.localStorage.getItem( usersName + "image-base64" );
+    },
+    /** Register event listeners */
+    bindUi = function(){
+      imgInput.addEventListener( "change", function(){
+        if ( this.files.length ) {
+          var reader = new FileReader();
+          reader.onload = function( e ){
+            window.localStorage.setItem(usersName + "image-base64", e.target.result );
+            updateUi();
+          };
+          reader.readAsDataURL( this.files[ 0 ] );
+        }
+      }, false );
+    };
+
+updateUi();
+bindUi();
+}())
 
 })

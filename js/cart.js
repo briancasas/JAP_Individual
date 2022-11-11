@@ -1,16 +1,14 @@
 let prodCart = "25801";
 let infCartProds = "";
-let inputCount = document.getElementById('inCount');
 ////////////// Array Vacío para almacenar productos////////////////////
 let userCart = [];
 ////////////// Llamado a los articulos del local storage //////////////
 let artCart = JSON.parse(localStorage.getItem("Articles:"));
-let subtotalProd = document.getElementById("productSubtotal");
+let cartTotal;
 let subtotal = 0;
 let costExhange = "";
 let costNewCurrency = "USD";
 let ExchangeType = 42;
-let stotal = "";
 //////////////////////////radios método de envío///////////////////////
 let standard = document.getElementById('standard');
 let express = document.getElementById('express');
@@ -25,102 +23,106 @@ let storageCount = localStorage.getItem("ItemCount")
 let totalCost = document.getElementById("total");
 ///////////////////////////Variable que almacena porcentaje de costo de envío////
 let shippingPer = 0;
-
 ////////////////////////////////// Booleano Submit/////////////////////////////////////
-
 let submitOK = false;
 let submitModal = false;
 /////////////////////////////inputs dirección//////////////////////////
 let address = document.getElementById("address");
 let addressNum = document.getElementById("numAddress");
 let esqAddress = document.getElementById("esq");
-
 //////////////////////////// inputs tipos de pago//////////////////////
 let codSeg = document.getElementById('cvv');
 let expMonth = document.getElementById('month');
 let cardNum = document.getElementById('cardNumber');
 let transfNum = document.getElementById('transferNumber');
 let payButton = document.getElementById("payButton");
-
 /////////// Booleanos para condicionales de metodo de envío, radio del tipo de pago y cantidad de articulos///////////
 let shipp = "no";
 let pay = "no";
-let countP = "no"
-
+let countP = "no";
+let cartOk = "no";
 ////////////////////////////////////////**************************************************//////////////////////////////////////////
 
 
 
-if (localStorage.getItem('User') === null) {
-  alert("Debes estar logueado para poder acceder al carrito")
-  window.location.href = "index.html";
 
-}
 /////////////////////////////////Funcion para mostrar carrito/////////////////////////////////////////////////////////
 
 function showCart() {
 
   addToCartHtml = ""
 
-  for (let cart of infCartProds.articles) {
-    stotal += cart.unitCost;
+  for (let index = 0; index < artCart.length; index++) {
+    let cart = artCart[index];
+    
     addToCartHtml += ` <img src="${cart.image}" class="prodCartImg"> <div class="row justify-content-evenly">
          <div class="col-2">${cart.name}</div>    
          <div class="col-2">${cart.currency} ${cart.unitCost}</div>     
-         <div class="form-group col-2"><input id="inCount" type="number" class="form-control name="inCount" min="1" value="1"></div>    
-         <div class="col-2"><strong><span id="productSubtotal">  </span></strong> -  <button type="button" class="btn btn-danger" id="delete${cart}">
-         <i class="far fa-trash-alt"></i>
+         <div class="form-group col-2"><input id="count${index}" type="number" class="form-control inpQty" min="1" value="1"></div>    
+         <div class="col-2"><strong><span>${costNewCurrency}</span> <span id="productSubtotal${index}" class="subPerUnit">` + (cart.count * exchange(cart)) + `  </span></strong>  <button type="button" class="btn-sm btn-danger" id="${index}" onclick="prodDelete(${index})"><i class="far fa-trash-alt"></i>
          </button></div> 
-         </div> `
+         </div><hr></div> `
 
 
   }
-  document.getElementById("ProdsCart").innerHTML = addToCartHtml;
+  document.getElementById("ProdsCart").innerHTML = addToCartHtml; //Pinta mediante DOM los objetos del carrito
 
 
-  ///////////////////////////Se ejecuta la función de actualizar subtotal para que no quede un campo vacío/////////////////////
-  updateSubtotal(infCartProds);
+  ///////////////////////////Se ejecuta la función que que agrega las escuchas de eventos de los inputs/////////////////////
+  inputEvents(artCart);
+  nonCartProducts(artCart);
 
-  /////////////////////Escucha de evento para ejecutar la función cuando se detecte cambio en el input de cantidad///////////////
-
-
-  document.getElementById("inCount").addEventListener("change", () => {
-    updateSubtotal(infCartProds);
-    validateForm(); //****Cuando detecta un cambio en el input ejecuta la validacion otra vez*****
-  });
 }
 
 
 
-/////////////////////////////////////////////Función para actualizar totales/////////////////////////////////////////////
 
-let updateSubtotal = (infCartProds) => {
-  for (let i = 0; i < infCartProds.articles.length; i++) {
-    let prod = infCartProds.articles[i];
-    let prodCurrency = prod.currency;
-    let prodUnitCost = prod.unitCost;
+///////////////////////////// Escuchas de evento para inputs////////////////////////////
 
-    if (prodCurrency === 'UYU') { ///////Condicional para pasar a dólares si el producto es en pesos//////////////
-      costExhange = Math.round(prodUnitCost / ExchangeType);
-    }
-    else costExhange = prodUnitCost;
-
-
-    let count = document.getElementById("inCount").value;
-    localStorage.setItem("itemCount", count)
-    subtotal = localStorage.getItem("itemCount") * prodUnitCost;
-    localStorage.setItem("subtotales", subtotal);
-
-
-
-    document.getElementById("productSubtotal").innerHTML = `${costNewCurrency} ${subtotal}`;
-    let TotalShipp = Math.round(shippingPer * subtotal);
-    allSubtotals.innerHTML = `${costNewCurrency} ${subtotal}`
-    totalCost.innerHTML = `${costNewCurrency} ${TotalShipp + subtotal}`;
-    shippingTotal.innerHTML = `${costNewCurrency} ${TotalShipp}`
-
-
+function inputEvents(artCart) {
+  let arrayInps = document.getElementsByClassName('inpQty'); //Se crea un array con todos los inps de cantidad 
+  for (let i = 0; i < arrayInps.length; i++) { //recorremos el array para identificar cada inp agregado
+    let inpCount = document.getElementById('count' + i); //Se crea variable que contiene cada uno de estos inputs
+    inpCount.addEventListener('change', () => { //Se agrega el evento change a cada uno de ellos
+      valueInp = inpCount.value; //
+      let subtotal = valueInp * exchange(artCart[i]);
+      document.getElementById('productSubtotal' + i).innerHTML = subtotal;
+      showTotals();
+    });
   }
+}
+
+
+//////////////////////////////cambio de moneda de pesos a dolares/////////////////////////////////////////
+function exchange(product) {
+  if (product.currency == "UYU") {
+    unitSubtotal = product.unitCost / ExchangeType
+  } else {
+    unitSubtotal = product.unitCost;
+  }
+  return Math.round(unitSubtotal)
+
+}
+
+///////////////////////////////// actualizacion de totales ////////////////////////////////////
+function showTotals() {
+  let subtotalsArray = document.getElementsByClassName('subPerUnit');
+  let totalCost = 0;
+  for (let i = 0; i < subtotalsArray.length; i++) {
+    let valueSubs = subtotalsArray[i];
+    totalCost += parseFloat(valueSubs.innerText);
+  }
+
+  let costShipping = shippingPer * totalCost;
+  let totalPrice = totalCost * (1 + shippingPer);
+  let htmlSub = costNewCurrency + " " + Math.round(totalCost)
+  let htmlShipping = costNewCurrency + " " + Math.round(costShipping)
+  let htmlTotal = costNewCurrency + " " + Math.round(totalPrice)
+
+  document.getElementById("subt").innerHTML = htmlSub;
+  document.getElementById("shippT").innerHTML = htmlShipping;
+  document.getElementById("tot").innerHTML = htmlTotal;
+
 }
 
 ////////// Escucha de evento que recarga la pagina/////////////
@@ -129,19 +131,20 @@ document.addEventListener(`DOMContentLoaded`, function (e) {
   ///////////Escuchas de evento para modificar valor de envío////
   standard.addEventListener('change', () => {
     shippingPer = 0.05;
-    updateSubtotal(infCartProds);
+    showTotals()
 
   });
   express.addEventListener('change', () => {
     shippingPer = 0.07;
-    updateSubtotal(infCartProds);
+    showTotals();
 
   });
 
   premium.addEventListener('change', () => {
     shippingPer = 0.15;
-    updateSubtotal(infCartProds);
+    showTotals();
   });
+
 })
 
 
@@ -178,21 +181,23 @@ function validateForm() {
 
 
   /////////////////////////// feedback si cantidad de productos es undefined o menor a 1////////////////////////////////////////////////
+  let allInputsCount = document.getElementsByClassName('inpQty');
+  for (let i = 0; i < allInputsCount.length; i++) {
+    let inputId = document.getElementById('count' + i)
+    if (inputId.value == undefined || inputId.value < 1) {
 
-  if (localStorage.getItem('itemCount') == null
-    || localStorage.getItem('itemCount') < 1) {
-    countP = "no"
-    document.getElementById("alertInp").innerHTML = `La cantidad en ${infCartProds.articles[0].name} no puede ser vacía o ser menor a 1`;
-    document.f1.inCount.classList.add("noCount")
-    document.f1.inCount.focus();
+
+      document.getElementById("alertInp").innerHTML = `La cantidad en ${artCart[i].name} no puede ser vacía o ser menor a 1`;
+
+      inputId.focus();
+      countP = "no"
+    }
+    else {
+      countP = "si"
+      document.getElementById("alertInp").innerHTML = "";
+    }
+
   }
-  else {
-    countP = "si"
-    document.f1.inCount.classList.remove("noCount")
-    document.getElementById("alertInp").innerHTML = "";
-  }
-
-
 
   /////////////////////////////////////////// Condicional feedback método de envío/////////////////////////////////////////////////////
 
@@ -218,7 +223,7 @@ function validateForm() {
       document.getElementById("noCheckRadio").innerHTML = ""
       document.getElementById("modalP").classList.remove("btn-danger");
       document.getElementById("modalP").classList.add("btn-success");
-      
+
     }
 
   }
@@ -229,12 +234,14 @@ function validateForm() {
     document.getElementById("modalP").classList.add("btn-danger");
 
   }
+
+  nonCartProducts()
 }
 
 ///////////////////////////// Función Validaciones Modal /////////////////////////////////////////////////
 function modalValidation() {
   if (!submitModal) return
-  
+
   if (!cardNum.value) {
     cardNum.classList.add("is-invalid");
     cardNum.classList.remove("is-valid");
@@ -286,10 +293,7 @@ function radioCreditSelected() {
   cardNum.disabled = false;
   expMonth.disabled = false;
   codSeg.disabled = false;
-  /*transfNum.removeAttribute("required");
-  expMonth.setAttribute("required", "");
-  codSeg.setAttribute("required", "");
-  cardNum.setAttribute("required", "");*/
+
 };
 
 creditRadio.addEventListener('change', radioCreditSelected);
@@ -299,10 +303,6 @@ function radioTransferSelected() {
   cardNum.disabled = true;
   expMonth.disabled = true;
   codSeg.disabled = true;
-  /*expMonth.removeAttribute("required");
-  codSeg.removeAttribute("required");
-  cardNum.removeAttribute("required");
-  transfNum.setAttribute("required", "");*/
 
 };
 
@@ -338,11 +338,22 @@ function loadChangesEvents() {
 document.addEventListener("DOMContentLoaded", loadChangesEvents);
 
 
+/////////////////////////////////funcion feedback si el carrito está vacío////////////////////////////////////////
+function nonCartProducts(){
+  if(document.getElementById("ProdsCart").innerText === ""){
+    cartOk="no"
+    document.getElementById("paid-success").innerHTML = `<div class="alert alert-warning" role="alert">
+    <p> No hay productos en el carrito, si desea agregar productos, dirigete al <a href="categories.html">Catalogo</a> </p>
+    </div>`}
+    else{
+      cartOk ="si";
+    }
+}
 
 /////////////////////////////Funcion con condicionales para enviar o no el alerta de compra exitosa////////////////////
 
 function purchaseButton() {
-  if (address.value != "" && addressNum.value != "" && esqAddress.value != "" && shipp === "si" && pay === "si" && countP === "si") {
+  if (address.value != "" && addressNum.value != "" && esqAddress.value != "" && shipp === "si" && pay === "si" && countP === "si" && cartOk ==="si") {
     let alertSuccess = "";
     alertSuccess +=
       `<div class="alert alert-success" role="alert">
@@ -351,14 +362,39 @@ function purchaseButton() {
   
     `
     document.getElementById("paid-success").innerHTML = alertSuccess;
+    
+
   }
+  
   else {
     document.getElementById("paid-success").innerHTML = ""
   }
+
 }
 ////////////////////////////////////////////////Escucha de evento botón de compra//////////////////////////////////
 payButton.addEventListener('click', purchaseButton)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+///////////////////Eliminar producto del carrito/////////////////////////////////////////
+
+const prodDelete = (index) => {
+
+  artCart.splice(index, 1)
+
+  document.getElementById('ProdsCart').innerHTML = ``
+  localStorage.setItem('Articles:', JSON.stringify(artCart));
+
+  showCart();
+  nonCartProducts();
+  showTotals();
+
+}
+
 
 
 function submitEventForm(event) {
@@ -376,15 +412,10 @@ document.addEventListener("DOMContentLoaded", function (a) {
   getJSONData(CART_INFO_URL + prodCart + EXT_TYPE).then(function (resultObj) {
     if (resultObj.status === "ok") {
       infCartProds = resultObj.data;
-
     }
     showCart();
-
-
-
-
+    showTotals();
+    nonCartProducts()
   });
-
-
 })
 
