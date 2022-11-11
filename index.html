@@ -61,7 +61,7 @@
       <script>
         function onSignIn(googleusercontent) {
           var profile = googleusercontent.getBasicProfile();
-          localStorage.setItem("User", profile.getGivenEmail());
+          localStorage.setItem("User", profile.getEmail());
           window.location.href = "portada.html"
         }
       </script>

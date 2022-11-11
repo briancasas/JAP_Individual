@@ -48,18 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("SignOut").addEventListener("click", function () {
     window.localStorage.removeItem("User");
   })
-  if (localStorage.getItem('Profiles:') !== null) {
-    storageImgProfile = JSON.parse(localStorage.getItem('Profiles:'))
-    storageImgProfile.forEach(element => {
+  
 
-      if (element.name === usersName) {
-        let img = document.getElementById('profileImg');
-        img.src = element.image;
-      }
-
-    });
-
-  }
+  
   (function(){
     /** @type {Node} */
     var imgInput = document.getElementById( "imagen-entrada" ),
