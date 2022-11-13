@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("User").innerHTML = localStorage.getItem("User");
   document.getElementById("SignOut").addEventListener("click", function () {
-    gapi.auth2.getAuthInstance().signOut();
+    var auth2 = gapi.auth2.getAuthInstance();
+auth2.signOut().then(function () {
+});
+auth2.disconnect();
     window.localStorage.removeItem("User");
   })
   
@@ -60,8 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     imgContainer2 = document.getElementById( "profileImg2" ),
     /** Restore image src from local storage */
     updateUi = function() {
-      imgContainer.src = window.localStorage.getItem( usersName + "image-base64" );
-      imgContainer2.src = window.localStorage.getItem( usersName + "image-base64" );
+      imgContainer.src = localStorage.getItem( usersName + "image-base64" );
+      imgContainer2.src = imgContainer.src;
+      
     },
     /** Register event listeners */
     bindUi = function(){
@@ -69,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if ( this.files.length ) {
           var reader = new FileReader();
           reader.onload = function( e ){
-            window.localStorage.setItem(usersName + "image-base64", e.target.result );
+            localStorage.setItem(usersName + "image-base64", e.target.result );
             updateUi();
           };
           reader.readAsDataURL( this.files[ 0 ] );

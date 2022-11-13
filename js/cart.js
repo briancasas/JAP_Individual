@@ -51,7 +51,7 @@ let cartOk = "no";
 function showCart() {
 
   addToCartHtml = ""
-
+ if(artCart !== null){
   for (let index = 0; index < artCart.length; index++) {
     let cart = artCart[index];
     
@@ -64,7 +64,7 @@ function showCart() {
          </div><hr></div> `
 
 
-  }
+  }}
   document.getElementById("ProdsCart").innerHTML = addToCartHtml; //Pinta mediante DOM los objetos del carrito
 
 
@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", loadChangesEvents);
 
 /////////////////////////////////funcion feedback si el carrito está vacío////////////////////////////////////////
 function nonCartProducts(){
-  if(document.getElementById("ProdsCart").innerText === ""){
+  if(document.getElementById("ProdsCart").innerText === "" || localStorage.getItem("Articles:") === null){
     cartOk="no"
     document.getElementById("paid-success").innerHTML = `<div class="alert alert-warning" role="alert">
     <p> No hay productos en el carrito, si desea agregar productos, dirigete al <a href="categories.html">Catalogo</a> </p>
