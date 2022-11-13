@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("User").innerHTML = localStorage.getItem("User");
   document.getElementById("SignOut").addEventListener("click", function () {
+    gapi.auth2.getAuthInstance().signOut();
     window.localStorage.removeItem("User");
   })
   
